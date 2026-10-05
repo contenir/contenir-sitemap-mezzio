@@ -1,0 +1,90 @@
+{
+    "name": "contenir/contenir-sitemap-mezzio",
+    "description": "Mezzio adapter for Contenir sitemaps: PSR-15 handlers for /sitemap.xml and /robots.txt, built from the contenir-workflow-mezzio navigation or any SitemapSourceInterface",
+    "license": "BSD-3-Clause",
+    "type": "library",
+    "keywords": [
+        "contenir",
+        "mezzio",
+        "sitemap",
+        "robots.txt",
+        "psr-15"
+    ],
+    "homepage": "https://contenir.com.au",
+    "support": {
+        "issues": "https://github.com/contenir/contenir-sitemap-mezzio/issues",
+        "source": "https://github.com/contenir/contenir-sitemap-mezzio"
+    },
+    "require": {
+        "php": "~8.3.0 || ~8.4.0 || ~8.5.0",
+        "ext-xmlwriter": "*",
+        "contenir/contenir-metadata": "^2.0",
+        "contenir/contenir-workflow-mezzio": "^2.1",
+        "laminas/laminas-cache": "^3.12",
+        "laminas/laminas-servicemanager": "^3.22",
+        "mezzio/mezzio": "^3.18",
+        "mezzio/mezzio-router": "^3.17 || ^4.0",
+        "psr/container": "^1.1 || ^2.0",
+        "psr/http-factory": "^1.0.2",
+        "psr/http-message": "^1.1 || ^2.0",
+        "psr/http-server-handler": "^1.0.2"
+    },
+    "require-dev": {
+        "infection/infection": "^0.34.1",
+        "laminas/laminas-diactoros": "^3.3",
+        "mezzio/mezzio-fastroute": "^3.11",
+        "php-db/phpdb-qa-tools": "0.1.x-dev",
+        "phpunit/phpunit": "^11.5.42"
+    },
+    "autoload": {
+        "psr-4": {
+            "Contenir\\Sitemap\\Mezzio\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Contenir\\Sitemap\\Mezzio\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@static-analysis",
+            "@test",
+            "@test-integration",
+            "@mutation-test"
+        ],
+        "cs-check": [
+            "mago format --check",
+            "mago lint"
+        ],
+        "cs-fix": [
+            "mago format",
+            "mago lint --fix"
+        ],
+        "static-analysis": "mago analyze",
+        "test": "phpunit --colors=always --testsuite unit",
+        "test-integration": "phpunit --colors=always --testsuite integration",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "mutation-test": "infection"
+    },
+    "config": {
+        "platform": {
+            "php": "8.3.99"
+        },
+        "sort-packages": true,
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.0.x-dev"
+        },
+        "laminas": {
+            "config-provider": "Contenir\\Sitemap\\Mezzio\\ConfigProvider"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
